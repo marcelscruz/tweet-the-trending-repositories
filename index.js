@@ -1,14 +1,27 @@
 const trending = require('trending-github')
 
-trending().then(repos => console.log(repos))
+const fetchTrendingRepositories = (period = '') =>
+  new Promise(async (resolve, reject) => {
+    try {
+      const repos = await trending(period)
+      const firstPosition = repos[0]
 
-//=> [{
-//=>   author: 'asciimoo',
-//=>   name: 'wuzz',
-//=>   href: 'https://github.com/asciimoo/wuzz',
-//=>   description: 'Interactive cli tool for HTTP inspection',
-//=>   language: 'Go',
-//=>   stars: 966,
-//=>   forks: 20,
-//=>   starsToday: 153
-//=> }, ... ]
+      resolve(firstPosition)
+    } catch (e) {
+      console.log(e)
+      reject(e)
+    }
+  })
+
+const getWinners = async () => {
+  const dailyWinner = await fetchTrendingRepositories()
+  console.log(dailyWinner)
+
+  const weeklyWinner = await fetchTrendingRepositories('weekly')
+  console.log(weeklyWinner)
+
+  const montlyWinner = await fetchTrendingRepositories('monthly')
+  console.log(montlyWinner)
+}
+
+getWinners()
