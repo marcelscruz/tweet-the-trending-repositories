@@ -1,16 +1,17 @@
 {
   "name": "tweet-the-trending-repositories",
   "version": "1.0.0",
-  "description": "",
+  "description": "Daily, weekly and monthly trending GitHub repositories report.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Marcel Cruz",
+  "license": "MIT",
   "dependencies": {
-    "oauth": "^0.9.15",
-    "trending-github": "^1.2.0"
+    "axios": "^0.19.0",
+    "cheerio": "^1.0.0-rc.3",
+    "oauth": "^0.9.15"
   }
 }
