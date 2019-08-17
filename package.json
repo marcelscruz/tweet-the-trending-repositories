@@ -2,9 +2,9 @@
   "name": "tweet-the-trending-repositories",
   "version": "1.0.0",
   "description": "Daily, weekly and monthly trending GitHub repositories report.",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server/index.js "
   },
   "keywords": [],
   "author": "Marcel Cruz",

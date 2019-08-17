@@ -25,6 +25,7 @@ module.exports = () => {
   is11AM && isFirstOfTheMonth && tweet(MONTHLY)
 
   console.log('====================================')
+  console.log(now.getMilliseconds())
   console.log('Hour: ', hours)
   console.log('Day of week: ', dayOfWeek)
   console.log('Day of month: ', dayOfMonth)
