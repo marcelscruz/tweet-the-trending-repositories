@@ -1,7 +1,7 @@
 const constants = require('./constants')
 const tweet = require('./tweet')
 
-const checkTime = () => {
+module.exports = () => {
   const { DAILY, WEEKLY, MONTHLY } = constants
 
   const now = new Date()
@@ -24,15 +24,9 @@ const checkTime = () => {
   // Monthly winner
   is11AM && isFirstOfTheMonth && tweet(MONTHLY)
 
+  console.log('====================================')
   console.log('Hour: ', hours)
   console.log('Day of week: ', dayOfWeek)
   console.log('Day of month: ', dayOfMonth)
+  console.log('====================================')
 }
-
-const ONE_HOUR = 3600000
-
-setInterval(() => {
-  checkTime()
-}, ONE_HOUR)
-
-console.log("I'M ALIVE")
