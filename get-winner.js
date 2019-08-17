@@ -1,16 +1,22 @@
-const trending = require('trending-github')
+const getRepositories = require('./get-repositories')
 
-module.exports = (period = '') =>
+module.exports = period =>
   new Promise(async (resolve, reject) => {
     try {
-      const repos = await trending(period)
+      const repositories = await getRepositories(period)
+
       let mostStars = 0
       let firstPosition
 
-      repos.forEach(repo => {
-        if (repo.starsToday > mostStars) {
-          mostStars = repo.starsToday
-          firstPosition = repo
+      repositories.forEach(repository => {
+        const starsCount =
+          repository.starsToday ||
+          repository.starsThisWeek ||
+          repository.starsThisMonth
+
+        if (starsCount > mostStars) {
+          mostStars = starsCount
+          firstPosition = repository
         }
       })
 
