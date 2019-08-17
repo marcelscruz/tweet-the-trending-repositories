@@ -34,3 +34,5 @@ const ONE_HOUR = 3600000
 setInterval(() => {
   checkTime()
 }, ONE_HOUR)
+
+console.log("I'M ALIVE")
