@@ -1,27 +1,36 @@
-const trending = require('trending-github')
+const constants = require('./constants')
+const tweet = require('./tweet')
 
-const fetchTrendingRepositories = (period = '') =>
-  new Promise(async (resolve, reject) => {
-    try {
-      const repos = await trending(period)
-      const firstPosition = repos[0]
+const checkTime = () => {
+  const { DAILY, WEEKLY, MONTHLY } = constants
 
-      resolve(firstPosition)
-    } catch (e) {
-      console.log(e)
-      reject(e)
-    }
-  })
+  const now = new Date()
+  const hours = now.getHours()
+  const dayOfWeek = now.getDay()
+  const dayOfMonth = now.getDate()
 
-const getWinners = async () => {
-  const dailyWinner = await fetchTrendingRepositories()
-  console.log(dailyWinner)
+  const is9AM = hours === 9
+  const is10AM = hours === 10
+  const is11AM = hours === 11
+  const isMonday = dayOfWeek === 1
+  const isFirstOfTheMonth = dayOfMonth === 1
 
-  const weeklyWinner = await fetchTrendingRepositories('weekly')
-  console.log(weeklyWinner)
+  // Daily winner
+  is10AM && tweet(DAILY)
 
-  const montlyWinner = await fetchTrendingRepositories('monthly')
-  console.log(montlyWinner)
+  // Weekly winner
+  is9AM && isMonday && tweet(WEEKLY)
+
+  // Monthly winner
+  is11AM && isFirstOfTheMonth && tweet(MONTHLY)
+
+  console.log('Hour: ', hours)
+  console.log('Day of week: ', dayOfWeek)
+  console.log('Day of month: ', dayOfMonth)
 }
 
-getWinners()
+const ONE_HOUR = 3600000
+
+setInterval(() => {
+  checkTime()
+}, ONE_HOUR)
