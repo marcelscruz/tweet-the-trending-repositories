@@ -1,0 +1,8 @@
+{
+  "env": {
+    "APPLICATION_CONSUMER_KEY": "@application_consumer_key",
+    "APPLICATION_SECRET": "@application_secret",
+    "USER_ACCESS_TOKEN": "@user_access_token",
+    "USER_SECRET": "@user_secret"
+  }
+}

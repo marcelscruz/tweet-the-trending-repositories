@@ -1,6 +1,6 @@
-const getRepositories = require('./get-repositories')
+import getRepositories from './get-repositories'
 
-module.exports = period =>
+export default period =>
   new Promise(async (resolve, reject) => {
     try {
       const repositories = await getRepositories(period)

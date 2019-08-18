@@ -1,10 +1,10 @@
-const axios = require('axios')
-const cheerio = require('cheerio')
-const constants = require('./constants')
+import axios from 'axios'
+import cheerio from 'cheerio'
+import constants from './constants'
 
 const { DAILY, WEEKLY, MONTHLY } = constants
 
-const trendingGitHub = (period = DAILY, language = '') =>
+export default (period = DAILY, language = '') =>
   new Promise((resolve, reject) =>
     axios
       .get(
@@ -104,7 +104,3 @@ const trendingGitHub = (period = DAILY, language = '') =>
         reject(err)
       }),
   )
-
-// For CommonJS default export support
-module.exports = trendingGitHub
-module.exports.default = trendingGitHub

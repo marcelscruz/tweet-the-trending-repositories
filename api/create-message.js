@@ -1,4 +1,4 @@
-const constants = require('./constants')
+import constants from './constants'
 
 const { DAILY, WEEKLY, MONTHLY } = constants
 
@@ -19,7 +19,7 @@ const shortenDescription = (winner, period) => {
 }
 
 // Create message and make sure it's not above 275 characters long
-createMessage = (winner, period) => {
+export default (winner, period) => {
   const {
     description,
     href,
@@ -33,6 +33,7 @@ createMessage = (winner, period) => {
   const starsPeriodCount = starsToday || starsThisWeek || starsThisMonth
 
   let periodAndEmoji
+  let starsPeriodWithText
 
   switch (period) {
     case DAILY:
@@ -63,5 +64,3 @@ createMessage = (winner, period) => {
 
   return message
 }
-
-module.exports = createMessage
