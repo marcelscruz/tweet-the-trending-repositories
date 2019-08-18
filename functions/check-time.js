@@ -1,6 +1,18 @@
 import constants from './constants'
 import tweet from './tweet'
 
+const addSecondDigit = number => {
+  const stringifiedNumber = number.toString()
+
+  if (stringifiedNumber.length === 1) {
+    const twoDigitsString = `0${stringifiedNumber}`
+
+    return twoDigitsString
+  }
+
+  return stringifiedNumber
+}
+
 module.exports = async (req, res) => {
   const { DAILY, WEEKLY, MONTHLY } = constants
 
@@ -18,7 +30,9 @@ module.exports = async (req, res) => {
   const isMonday = dayOfWeek === 1
   const isFirstOfTheMonth = dayOfMonth === 1
 
-  const timeAndDate = `${hours}:${minutes} - ${dayOfMonth}/${month}/${year}`
+  const timeAndDate = `${addSecondDigit(hours)}:${addSecondDigit(
+    minutes,
+  )} - ${addSecondDigit(dayOfMonth)}/${addSecondDigit(month)}/${year}`
 
   console.log('====================================')
   console.log('Time and date: ', timeAndDate)

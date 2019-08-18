@@ -55,6 +55,9 @@ typings/
 # dotenv environment variables file
 .env
 
+# Next.js files
+.next
+
 # gatsby files
 .cache/
 build

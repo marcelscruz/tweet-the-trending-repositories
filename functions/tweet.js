@@ -38,7 +38,8 @@ export default period =>
             console.log(`Error tweeting: ${JSON.stringify(error)}`)
             reject(`Error tweeting: ${JSON.stringify(error)}`)
           }
-          resolve(`Tweet successful: ${result}`)
+          console.log(`Tweet successful.`)
+          resolve(`Tweet successful.`)
         },
       )
     } catch (error) {

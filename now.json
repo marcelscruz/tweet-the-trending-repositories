@@ -1,4 +1,9 @@
 {
+  "version": 2,
+  "builds": [
+    { "src": "index.html", "use": "@now/static" },
+    { "src": "functions/check-time.js", "use": "@now/node" }
+  ],
   "env": {
     "APPLICATION_CONSUMER_KEY": "@application_consumer_key",
     "APPLICATION_SECRET": "@application_secret",
