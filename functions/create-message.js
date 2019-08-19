@@ -10,12 +10,12 @@ const shortenDescription = (winner, period) => {
     .slice(0, description.length - 4)
     .trim()}...`
 
-  const shorterWinner = {
+  const newWinner = {
     ...winner,
     description: slicedDescription,
   }
 
-  return createMessage(shorterWinner, period)
+  return createMessage(newWinner, period)
 }
 
 // Create message and make sure it's not above 275 characters long
@@ -30,23 +30,23 @@ const createMessage = (winner, period) => {
     starsThisMonth,
   } = winner
 
-  const starsPeriodCount = starsToday || starsThisWeek || starsThisMonth
+  const starsCount = starsToday || starsThisWeek || starsThisMonth
 
   let periodAndEmoji
-  let starsPeriodWithText
+  let labelAndStarsCount
 
   switch (period) {
     case DAILY:
       periodAndEmoji = 'day 📈'
-      starsPeriodWithText = `last 24h: ${starsPeriodCount}`
+      labelAndStarsCount = `last 24h: ${starsCount}`
       break
     case WEEKLY:
       periodAndEmoji = 'week 🏅'
-      starsPeriodWithText = `last week: ${starsPeriodCount}`
+      labelAndStarsCount = `last week: ${starsCount}`
       break
     case MONTHLY:
       periodAndEmoji = 'month 🏆'
-      starsPeriodWithText = `last month: ${starsPeriodCount}`
+      labelAndStarsCount = `last month: ${starsCount}`
       break
     default:
       break
@@ -54,7 +54,7 @@ const createMessage = (winner, period) => {
 
   const message = `Trending repository of the ${periodAndEmoji}\n\n${name}\n\n${
     description ? description + '\n\n' : ''
-  }⭐️ ${starsPeriodWithText}\n⭐️ total: ${stars}\n${href}`
+  }⭐️ ${labelAndStarsCount}\n⭐️ total: ${stars}\n${href}`
 
   const isMessageTooLong = message.length > 275
 
