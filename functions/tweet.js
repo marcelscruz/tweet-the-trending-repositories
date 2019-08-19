@@ -33,7 +33,7 @@ export default period =>
         userSecret,
         postBody,
         '',
-        (error, result) => {
+        error => {
           if (error) {
             console.log(`Error tweeting: ${JSON.stringify(error)}`)
             reject(`Error tweeting: ${JSON.stringify(error)}`)

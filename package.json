@@ -18,5 +18,8 @@
     "oauth": "^0.9.15",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.1.0"
   }
 }

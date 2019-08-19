@@ -19,7 +19,7 @@ const shortenDescription = (winner, period) => {
 }
 
 // Create message and make sure it's not above 275 characters long
-export default (winner, period) => {
+const createMessage = (winner, period) => {
   const {
     description,
     href,
@@ -64,3 +64,5 @@ export default (winner, period) => {
 
   return message
 }
+
+export default createMessage
