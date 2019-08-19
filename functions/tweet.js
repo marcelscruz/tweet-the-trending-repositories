@@ -35,11 +35,19 @@ export default period =>
         '',
         error => {
           if (error) {
-            console.log(`Error tweeting: ${JSON.stringify(error)}`)
-            reject(`Error tweeting: ${JSON.stringify(error)}`)
+            console.log(
+              `Error tweeting ${period} trending repository: ${JSON.stringify(
+                error,
+              )}`,
+            )
+            reject(
+              `Error tweeting ${period} trending repository: ${JSON.stringify(
+                error,
+              )}`,
+            )
           }
-          console.log(`Tweet successful.`)
-          resolve(`Tweet successful.`)
+          console.log(`Tweeting ${period} trending repository was successful.`)
+          resolve(`Tweeting ${period} trending repository was successful.`)
         },
       )
     } catch (error) {
