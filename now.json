@@ -2,7 +2,9 @@
   "version": 2,
   "builds": [
     { "src": "index.html", "use": "@now/static" },
-    { "src": "functions/check-time.js", "use": "@now/node" }
+    { "src": "functions/daily.js", "use": "@now/node" },
+    { "src": "functions/weekly.js", "use": "@now/node" },
+    { "src": "functions/monthly.js", "use": "@now/node" }
   ],
   "env": {
     "APPLICATION_CONSUMER_KEY": "@application_consumer_key",

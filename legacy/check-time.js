@@ -1,5 +1,5 @@
-import constants from './constants'
-import tweet from './tweet'
+import constants from '../functions/constants'
+import tweet from '../functions/tweet'
 
 const addSecondDigit = number => {
   const stringifiedNumber = number.toString()
