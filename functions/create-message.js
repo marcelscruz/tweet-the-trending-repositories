@@ -38,7 +38,7 @@ const createMessage = (winner, period) => {
   switch (period) {
     case DAILY:
       periodAndEmoji = 'day 📈'
-      starsPeriodWithText = `today: ${starsPeriodCount}`
+      starsPeriodWithText = `last 24h: ${starsPeriodCount}`
       break
     case WEEKLY:
       periodAndEmoji = 'week 🏅'
