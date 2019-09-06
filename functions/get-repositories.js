@@ -21,13 +21,21 @@ export default (period = DAILY, language = '') =>
             .find('h1.h3 a')
             .text()
             .trim()
+            .replace(/\r?\n|\r/g, '')
 
-          const starLink = `/${title.replace(/ /g, '')}/stargazers`
-          const forkLink = `/${title.replace(/ /g, '')}/network`
+          const starLink = `/${title.replace(
+            / /g,
+            '',
+          )}/stargazers.${title.split('/')[1].trim()}`
+
+          const forkLink = `/${title.replace(
+            / /g,
+            '',
+          )}/network/members.${title.split('/')[1].trim()}`
 
           const currentRepo = {
-            author: title.split(' / ')[0],
-            name: title.split(' / ')[1],
+            author: title.split('/')[0].trim(),
+            name: title.split('/')[1].trim(),
             href: `https://github.com/${title.replace(/ /g, '')}`,
             description:
               $(repo)
