@@ -52,12 +52,12 @@ export default period =>
       )
     } catch (error) {
       console.log(
-        `Error fetching ${period} trending repository: ${JSON.stringify(
+        `Error creating ${period} trending repository tweet: ${JSON.stringify(
           error,
         )}`,
       )
       reject(
-        `Error fetching ${period} trending repository: ${JSON.stringify(
+        `Error creating ${period} trending repository tweet: ${JSON.stringify(
           error,
         )}`,
       )

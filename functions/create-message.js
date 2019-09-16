@@ -32,6 +32,16 @@ const createMessage = (winner, period) => {
 
   const starsCount = starsToday || starsThisWeek || starsThisMonth
 
+  // Check if any required value is undefined
+  if (!href || !name || !stars || !starsCount) {
+    throw new Error({
+      href,
+      name,
+      stars,
+      starsCount,
+    })
+  }
+
   let periodAndEmoji
   let labelAndStarsCount
 
