@@ -34,12 +34,12 @@ const createMessage = (winner, period) => {
 
   // Check if any required value is undefined
   if (!href || !name || !stars || !starsCount) {
-    throw new Error({
+    throw {
       href,
       name,
       stars,
       starsCount,
-    })
+    }
   }
 
   let periodAndEmoji
