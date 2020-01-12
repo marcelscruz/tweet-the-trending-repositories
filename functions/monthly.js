@@ -1,6 +1,6 @@
-import constants from './constants'
-import getTimeAndDate from './get-time-and-date'
-import tweet from './tweet'
+const constants = require('./constants')
+const getTimeAndDate = require('./get-time-and-date')
+const tweet = require('./tweet')
 
 module.exports = async (req, res) => {
   const { MONTHLY } = constants
@@ -14,6 +14,6 @@ module.exports = async (req, res) => {
 
     return res.send(result)
   } catch (error) {
-    return res.status(400).send(error)
+    return error
   }
 }
