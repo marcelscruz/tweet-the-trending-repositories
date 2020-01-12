@@ -1,4 +1,4 @@
-import constants from './constants'
+const constants = require('./constants')
 
 const { DAILY, WEEKLY, MONTHLY } = constants
 
@@ -75,4 +75,4 @@ const createMessage = (winner, period) => {
   return message
 }
 
-export default createMessage
+module.exports = createMessage

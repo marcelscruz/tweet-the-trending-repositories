@@ -1,8 +1,8 @@
-import OAuth from 'oauth'
-import createMessage from './create-message'
-import getWinner from './get-winner'
+const OAuth = require('oauth')
+const createMessage = require('./create-message')
+const getWinner = require('./get-winner')
 
-export default period =>
+module.exports = period =>
   new Promise(async (resolve, reject) => {
     const applicationConsumerKey = process.env.APPLICATION_CONSUMER_KEY
     const applicationSecret = process.env.APPLICATION_SECRET
@@ -36,30 +36,19 @@ export default period =>
         error => {
           if (error) {
             console.log(
-              `Error tweeting ${period} trending repository: ${JSON.stringify(
-                error,
-              )}`,
+              `Error tweeting ${period} trending repository: ${error}`,
             )
-            reject(
-              `Error tweeting ${period} trending repository: ${JSON.stringify(
-                error,
-              )}`,
-            )
+            reject(`Error tweeting ${period} trending repository: ${error}`)
           }
+
           console.log(`Tweeting ${period} trending repository was successful.`)
           resolve(`Tweeting ${period} trending repository was successful.`)
         },
       )
     } catch (error) {
       console.log(
-        `Error creating ${period} trending repository tweet: ${JSON.stringify(
-          error,
-        )}`,
+        `Error creating ${period} trending repository tweet: ${error}`,
       )
-      reject(
-        `Error creating ${period} trending repository tweet: ${JSON.stringify(
-          error,
-        )}`,
-      )
+      reject(`Error creating ${period} trending repository tweet: ${error}`)
     }
   })

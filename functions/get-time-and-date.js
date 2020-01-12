@@ -10,7 +10,7 @@ const addSecondDigit = number => {
   return stringifiedNumber
 }
 
-export default () => {
+module.exports = () => {
   const now = new Date()
   const minutes = now.getMinutes()
   const hours = now.getHours()
