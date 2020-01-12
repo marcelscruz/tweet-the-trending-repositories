@@ -1,10 +1,10 @@
-import axios from 'axios'
-import cheerio from 'cheerio'
-import constants from './constants'
+const axios = require('axios')
+const cheerio = require('cheerio')
+const constants = require('./constants')
 
 const { DAILY, WEEKLY, MONTHLY } = constants
 
-export default (period = DAILY, language = '') =>
+module.exports = (period = DAILY, language = '') =>
   new Promise((resolve, reject) =>
     axios
       .get(
@@ -23,10 +23,7 @@ export default (period = DAILY, language = '') =>
             .trim()
             .replace(/\r?\n|\r/g, '')
 
-          const starLink = `/${title.replace(
-            / /g,
-            '',
-          )}/stargazers.${title.split('/')[1].trim()}`
+          const starLink = `/${title.replace(/ /g, '')}/stargazers`
 
           const forkLink = `/${title.replace(
             / /g,
