@@ -36,19 +36,34 @@ module.exports = period =>
         error => {
           if (error) {
             console.log(
-              `Error tweeting ${period} trending repository: ${error}`,
+              `Error tweeting ${period} trending repository: ${JSON.stringify(
+                error,
+              )}`,
             )
-            reject(`Error tweeting ${period} trending repository: ${error}`)
+
+            reject(
+              `Error tweeting ${period} trending repository: ${JSON.stringify(
+                error,
+              )}`,
+            )
           }
 
           console.log(`Tweeting ${period} trending repository was successful.`)
+
           resolve(`Tweeting ${period} trending repository was successful.`)
         },
       )
     } catch (error) {
       console.log(
-        `Error creating ${period} trending repository tweet: ${error}`,
+        `Error creating ${period} trending repository tweet: ${JSON.stringify(
+          error,
+        )}`,
       )
-      reject(`Error creating ${period} trending repository tweet: ${error}`)
+
+      reject(
+        `Error creating ${period} trending repository tweet: ${JSON.stringify(
+          error,
+        )}`,
+      )
     }
   })
