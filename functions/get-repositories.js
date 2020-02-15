@@ -11,6 +11,11 @@ module.exports = (period = DAILY, language = '') =>
         `https://github.com/trending/${encodeURIComponent(
           language,
         )}?since=${period}`,
+        {
+          headers: {
+            Accept: '*/*',
+          },
+        },
       )
       .then(response => {
         const $ = cheerio.load(response.data)
