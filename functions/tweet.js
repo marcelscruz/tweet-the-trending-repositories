@@ -4,10 +4,10 @@ const getWinner = require('./get-winner')
 
 module.exports = period =>
   new Promise(async (resolve, reject) => {
-    const applicationConsumerKey = process.env.APPLICATION_CONSUMER_KEY_STAGING
-    const applicationSecret = process.env.APPLICATION_SECRET_STAGING
-    const userAccessToken = process.env.USER_ACCESS_TOKEN_STAGING
-    const userSecret = process.env.USER_SECRET_STAGING
+    const applicationConsumerKey = process.env.APPLICATION_CONSUMER_KEY
+    const applicationSecret = process.env.APPLICATION_SECRET
+    const userAccessToken = process.env.USER_ACCESS_TOKEN
+    const userSecret = process.env.USER_SECRET
 
     try {
       const winner = await getWinner(period)
