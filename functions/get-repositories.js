@@ -17,7 +17,7 @@ module.exports = (period = DAILY, language = '') =>
           },
         },
       )
-      .then(response => {
+      .then((response) => {
         const $ = cheerio.load(response.data)
         const repos = []
 
@@ -39,11 +39,7 @@ module.exports = (period = DAILY, language = '') =>
             author: title.split('/')[0].trim(),
             name: title.split('/')[1].trim(),
             href: `https://github.com/${title.replace(/ /g, '')}`,
-            description:
-              $(repo)
-                .find('p')
-                .text()
-                .trim() || null,
+            description: $(repo).find('p').text().trim() || null,
             language: $(repo)
               .find('[itemprop=programmingLanguage]')
               .text()
@@ -110,7 +106,7 @@ module.exports = (period = DAILY, language = '') =>
 
         resolve(repos)
       })
-      .catch(err => {
+      .catch((err) => {
         reject(err)
       }),
   )
