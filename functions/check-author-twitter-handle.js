@@ -12,23 +12,42 @@ module.exports = (author) =>
       .then((response) => {
         const $ = cheerio.load(response.data)
 
-        const userDetails = $('.vcard-details')
-
         let twitterUrl
 
-        userDetails.each((index, item) => {
-          if (index === 0) {
-            const anchors = $(item).find('li a')
+        const userDetails = $('.vcard-details')
+        const organizationDetails = $('.TableObject')
 
-            anchors.each((index, anchor) => {
-              const href = $(anchor).attr('href')
+        if (userDetails.length !== 0) {
+          userDetails.each((index, item) => {
+            if (index === 0) {
+              const anchors = $(item).find('li a')
 
-              if (href.includes('twitter.com')) {
-                twitterUrl = href
-              }
-            })
-          }
-        })
+              anchors.each((index, anchor) => {
+                const href = $(anchor).attr('href')
+
+                if (href.includes('twitter.com')) {
+                  twitterUrl = href
+                  return
+                }
+              })
+            }
+          })
+        } else if (organizationDetails.length !== 0) {
+          organizationDetails.each((index, item) => {
+            if (index === 0) {
+              const anchors = $(item).find('li a')
+
+              anchors.each((index, anchor) => {
+                const href = $(anchor).attr('href')
+
+                if (href.includes('twitter.com')) {
+                  twitterUrl = href
+                  return
+                }
+              })
+            }
+          })
+        }
 
         if (twitterUrl) {
           resolve(twitterUrl.split('twitter.com/')[1].trim())
