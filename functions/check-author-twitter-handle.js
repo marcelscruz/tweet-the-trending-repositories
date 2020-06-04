@@ -13,6 +13,7 @@ module.exports = (author) =>
         const $ = cheerio.load(response.data)
 
         let twitterUrl
+        let twitterHandle
 
         const userDetails = $('.vcard-details')
         const organizationDetails = $('.TableObject')
@@ -50,7 +51,11 @@ module.exports = (author) =>
         }
 
         if (twitterUrl) {
-          resolve(twitterUrl.split('twitter.com/')[1].trim())
+          twitterHandle = twitterUrl.split('twitter.com/')[1].trim()
+        }
+
+        if (twitterHandle) {
+          resolve(twitterHandle)
         } else {
           resolve()
         }
