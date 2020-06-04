@@ -52,15 +52,15 @@ const createMessage = async (winner, period) => {
   switch (period) {
     case DAILY:
       periodAndEmoji = 'day 📈'
-      labelAndStarsCount = `last 24h: ${starsCount}`
+      labelAndStarsCount = `Last 24h: ${starsCount}`
       break
     case WEEKLY:
       periodAndEmoji = 'week 🏅'
-      labelAndStarsCount = `last week: ${starsCount}`
+      labelAndStarsCount = `Last week: ${starsCount}`
       break
     case MONTHLY:
       periodAndEmoji = 'month 🏆'
-      labelAndStarsCount = `last month: ${starsCount}`
+      labelAndStarsCount = `Last month: ${starsCount}`
       break
     default:
       break
@@ -74,7 +74,7 @@ const createMessage = async (winner, period) => {
 
   const message = `Trending repository of the ${periodAndEmoji}\n\n${nameParsed}\n\n${
     description ? description + '\n\n' : ''
-  }⭐️ ${labelAndStarsCount}\n⭐️ total: ${stars}\n${href}`
+  }${labelAndStarsCount} ⭐️\nTotal: ${stars} ⭐️\n${href}`
 
   const isMessageTooLong = message.length > 275
 
