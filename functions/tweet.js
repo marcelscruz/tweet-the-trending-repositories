@@ -2,7 +2,7 @@ const OAuth = require('oauth')
 const createMessage = require('./create-message')
 const getWinner = require('./get-winner')
 
-module.exports = period =>
+module.exports = (period) =>
   new Promise(async (resolve, reject) => {
     const applicationConsumerKey = process.env.APPLICATION_CONSUMER_KEY
     const applicationSecret = process.env.APPLICATION_SECRET
@@ -11,7 +11,7 @@ module.exports = period =>
 
     try {
       const winner = await getWinner(period)
-      const message = createMessage(winner, period)
+      const message = await createMessage(winner, period)
 
       const oauth = new OAuth.OAuth(
         'https://api.twitter.com/oauth/request_token',
@@ -33,7 +33,7 @@ module.exports = period =>
         userSecret,
         postBody,
         '',
-        error => {
+        (error) => {
           if (error) {
             console.log(
               `Error tweeting ${period} trending repository: ${JSON.stringify(

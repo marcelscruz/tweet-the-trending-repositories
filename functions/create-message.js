@@ -1,4 +1,5 @@
 const constants = require('./constants')
+const checkAuthorTwitterHandle = require('./check-author-twitter-handle')
 
 const { DAILY, WEEKLY, MONTHLY } = constants
 
@@ -19,10 +20,11 @@ const shortenDescription = (winner, period) => {
 }
 
 // Create message and make sure it's not above 275 characters long
-const createMessage = (winner, period) => {
+const createMessage = async (winner, period) => {
   const {
     description,
     href,
+    author,
     name,
     stars,
     starsToday,
@@ -33,14 +35,16 @@ const createMessage = (winner, period) => {
   const starsCount = starsToday || starsThisWeek || starsThisMonth
 
   // Check if any required value is undefined
-  if (!href || !name || !stars || !starsCount) {
+  if (!href || !author || !name || !stars || !starsCount) {
     throw {
       href,
+      author,
       name,
       stars,
       starsCount,
     }
   }
+  const authorTwitterHandle = await checkAuthorTwitterHandle(author)
 
   let periodAndEmoji
   let labelAndStarsCount
@@ -62,7 +66,13 @@ const createMessage = (winner, period) => {
       break
   }
 
-  const message = `Trending repository of the ${periodAndEmoji}\n\n${name}\n\n${
+  let nameParsed = name
+
+  if (authorTwitterHandle) {
+    nameParsed = `${name} by @${authorTwitterHandle}`
+  }
+
+  const message = `Trending repository of the ${periodAndEmoji}\n\n${nameParsed}\n\n${
     description ? description + '\n\n' : ''
   }⭐️ ${labelAndStarsCount}\n⭐️ total: ${stars}\n${href}`
 
