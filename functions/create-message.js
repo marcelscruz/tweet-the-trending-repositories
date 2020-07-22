@@ -1,5 +1,6 @@
 const constants = require('./constants')
 const checkAuthorTwitterHandle = require('./check-author-twitter-handle')
+const twttr = require('twitter-text')
 
 const { DAILY, WEEKLY, MONTHLY } = constants
 
@@ -76,7 +77,8 @@ const createMessage = async (winner, period) => {
     description ? description + '\n\n' : ''
   }${labelAndStarsCount} ⭐️\nTotal: ${stars} ⭐️\n${href}`
 
-  const isMessageTooLong = message.length > 275
+  const tweetParsed = twttr.parseTweet(message)
+  const isMessageTooLong = tweetParsed.weightedLength > 280
 
   if (isMessageTooLong) {
     return shortenDescription(winner, period)
