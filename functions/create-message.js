@@ -28,6 +28,7 @@ const createMessage = async (winner, period) => {
     author,
     name,
     stars,
+    language,
     starsToday,
     starsThisWeek,
     starsThisMonth,
@@ -73,9 +74,19 @@ const createMessage = async (winner, period) => {
     nameParsed = `${name} by @${authorTwitterHandle}`
   }
 
-  const message = `Trending repository of the ${periodAndEmoji}\n\n${nameParsed}\n\n${
-    description ? description + '\n\n' : ''
-  }${labelAndStarsCount} ⭐️\nTotal: ${stars} ⭐️\n${href}`
+  const message = `
+Trending repository of the ${periodAndEmoji}
+  
+${nameParsed}
+
+${description ? description : ''}
+
+${language ? 'Main language: #' + language : ''}
+
+${labelAndStarsCount} ⭐
+Total: ${stars} ⭐️
+                  
+#100DaysOfCode #CodeNewbie  ${href}`
 
   const tweetParsed = twttr.parseTweet(message)
   const isMessageTooLong = tweetParsed.weightedLength > 280
