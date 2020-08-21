@@ -5,20 +5,20 @@ const twttr = require('twitter-text')
 const { DAILY, WEEKLY, MONTHLY } = constants
 
 // Shorten description and add '...'
-const shortenDescription = (winner, period) => {
-  const { description } = winner
+// const shortenDescription = (winner, period) => {
+//   const { description } = winner
 
-  const slicedDescription = `${description
-    .slice(0, description.length - 4)
-    .trim()}...`
+//   const slicedDescription = `${description
+//     .slice(0, description.length - 4)
+//     .trim()}...`
 
-  const newWinner = {
-    ...winner,
-    description: slicedDescription,
-  }
+//   const newWinner = {
+//     ...winner,
+//     description: slicedDescription,
+//   }
 
-  return createMessage(newWinner, period)
-}
+//   return createMessage(newWinner, period)
+// }
 
 // Create message and make sure it's not above 275 characters long
 const createMessage = async (winner, period) => {
@@ -89,13 +89,33 @@ Total: ${stars} ⭐️
 #100DaysOfCode #CodeNewbie  ${href}`
 
   const tweetParsed = twttr.parseTweet(message)
-  const isMessageTooLong = tweetParsed.weightedLength > 280
+  const messageLength = tweetParsed.weightedLength
 
-  if (isMessageTooLong) {
-    return shortenDescription(winner, period)
+  if (messageLength > 280) {
+    const excess = messageLength - 280
+    const shortenDescription = description.slice(
+      0,
+      description.length - (excess + 3),
+    )
+
+    const shortenMessage = `
+Trending repository of the ${periodAndEmoji}
+  
+${nameParsed}
+
+${shortenDescription ? shortenDescription + '...' : ''}
+
+${language ? 'Main language: #' + language : ''}
+
+${labelAndStarsCount} ⭐
+Total: ${stars} ⭐️
+                  
+#100DaysOfCode #CodeNewbie  ${href}`
+
+    return shortenMessage
+  } else {
+    return message
   }
-
-  return message
 }
 
 module.exports = createMessage
