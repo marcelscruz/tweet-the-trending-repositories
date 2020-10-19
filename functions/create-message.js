@@ -85,8 +85,7 @@ ${language ? 'Main language: #' + language : ''}
 
 ${labelAndStarsCount} ⭐
 Total: ${stars} ⭐️
-                  
-#100DaysOfCode #CodeNewbie  ${href}`
+${href}`
 
   const tweetParsed = twttr.parseTweet(message)
   const messageLength = tweetParsed.weightedLength
@@ -109,8 +108,7 @@ ${language ? 'Main language: #' + language : ''}
 
 ${labelAndStarsCount} ⭐
 Total: ${stars} ⭐️
-                  
-#100DaysOfCode #CodeNewbie  ${href}`
+${href}`
 
     return shortenMessage
   } else {
