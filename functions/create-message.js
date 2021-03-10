@@ -104,7 +104,7 @@ ${nameParsed}
 
 ${shortenDescription ? shortenDescription + '...' : ''}
 
-${language ? 'Main language: #' + language : ''}
+${language ? 'Main language: ' + language : ''}
 
 ${labelAndStarsCount} ⭐
 Total: ${stars} ⭐️
