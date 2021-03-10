@@ -4,22 +4,6 @@ const twttr = require('twitter-text')
 
 const { DAILY, WEEKLY, MONTHLY } = constants
 
-// Shorten description and add '...'
-// const shortenDescription = (winner, period) => {
-//   const { description } = winner
-
-//   const slicedDescription = `${description
-//     .slice(0, description.length - 4)
-//     .trim()}...`
-
-//   const newWinner = {
-//     ...winner,
-//     description: slicedDescription,
-//   }
-
-//   return createMessage(newWinner, period)
-// }
-
 // Create message and make sure it's not above 275 characters long
 const createMessage = async (winner, period) => {
   const {
